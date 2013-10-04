@@ -51,19 +51,26 @@ ex: offset=50
 		"headCoach": <head_coach_name>,
 		"offensiveCoordinator": <oc_name>,
 		"defensiveCoordinator": <dc_name>,
-		"conference": <afc/nfc>,
-		"division": <north/south/east/west>,
+		"conference": <conference>,
+		"division": <division>,
 		"homeField": {
 			"name": <venue_name>,
 			"city": <venue_city>,
 			"capacity": <venue_capacity>
 		},
 		"established": <establishment_year>,
-		"divisionalStanding": <1-4>,
-		"conferenceStanding": <1-16>
+		"divisionalStanding": <div_standing>,
+		"conferenceStanding": <con_standing>
 	}
 }
 ```
+
+**```division```**: NORTH, SOUTH, EAST, WEST
+
+**```div_standing```**: 1-4
+
+**```con_standing```**: 1-16
+
 
 *403*:
 
@@ -107,6 +114,4 @@ ex: offset=50
 }
 ```
 
-**```player_status```**:
-
-ACTIVE, INACTIVE, PRACTICE, IR, PUP
+**```player_status```**: ACTIVE, INACTIVE, PRACTICE, IR, PUP
