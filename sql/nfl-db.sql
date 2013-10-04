@@ -38,6 +38,7 @@ CREATE TABLE players (
 	id integer NOT NULL UNIQUE DEFAULT nextval('uniqueid'),
 	lastname varchar(80) NOT NULL,
 	firstname varchar(80) NOT NULL,
+	nickname varchar(120) DEFAULT NULL,
 	position position_abbr NULL,
 	team_id integer DEFAULT NULL,
 	status player_status DEFAULT NULL,
@@ -74,6 +75,8 @@ CREATE TABLE games (
 	playoff boolean DEFAULT false,
 	season integer NOT NULL,
 	season_week integer DEFAULT NULL,
+	weather_conditions varchar(256) DEFAULT NULL,
+	notes text DEFAULT NULL,
 	CONSTRAINT games_home_team_fk FOREIGN KEY (home_team_id)
 		REFERENCES teams(id) ON UPDATE CASCADE ON DELETE CASCADE,
 	CONSTRAINT games_away_team_fk FOREIGN KEY (away_team_id)

@@ -1,10 +1,9 @@
-Sports API v.1
-==============
+# Sports API v.1
 
-This is the source code runnign the sports API.  It's everything needed to start running a local copy of the API.  Currently it supports only the NFL.
 
-Methods
-=======
+This is the source code running the sports API.  It's everything needed to start running a local copy of the API.  Currently it supports only the NFL.  The first few days, it will simply be a sql file and reference documentation, no code.  Code will be written to fit the spec.
+
+## Methods
 
 Base url: http://api.example.com/v1/football/nfl/
 
@@ -27,8 +26,8 @@ ex: offset=50
 *suppress_error_codes* - can be set to true in order to always return a 200 HTTP response code instead of the proper HTTP response code.  Error messages will still be included in the response object.
 
 
-teams
------
+### teams
+
 
 | Method | URL    | Alias |
 |:------ |:----- |:----- |
@@ -37,8 +36,10 @@ teams
 | GET    | ```teams/nfc``` | ```teams?q=(conference:nfc)``` |
 | GET    | ```teams/afc/<division>``` | ```teams?q=(conference:afc,division:<division>)``` |
 | GET    | ```teams/nfc/<division>``` | ```teams?q=(conference:nfc,division:<division>)``` |
+| GET    | ```teams/<id>``` | ```teams?q=(id:<id>)``` |
+| GET    | ```teams/<name>``` | ```teams?q=(name:<team_name>)``` |
 
-*Responses*
+**Responses**
 
 *200*:
 
@@ -50,7 +51,16 @@ teams
 		"headCoach": <head_coach_name>,
 		"offensiveCoordinator": <oc_name>,
 		"defensiveCoordinator": <dc_name>,
-		"conference":
+		"conference": <afc/nfc>,
+		"division": <north/south/east/west>,
+		"homeField": {
+			"name": <venue_name>,
+			"city": <venue_city>,
+			"capacity": <venue_capacity>
+		},
+		"established": <establishment_year>,
+		"divisionalStanding": <1-4>,
+		"conferenceStanding": <1-16>
 	}
 }
 ```
@@ -63,9 +73,40 @@ teams
 		"error": 403,
 		"message": "Rate limit exceeded",
 		"description": "IP may not exceed 60 API calls a minute",
-		"userMessage": "The application must wait before retrieveing more information from the severs."
+		"userMessage": "The application must wait before retrieveing more information from the severs.",
 		"code": "RATE:001"
 	}
 }
 ```
 
+### players
+
+| Method | URL    | Alias |
+|:------ |:----- |:----- |
+| GET    | ```players``` | |
+| GET    | ```players/<playerid>``` | ```players?q=(id:<id>)``` |
+| GET    | ```roster/<team_name>``` | ```players?q=(team:<team_name>)``` |
+| GET    | ```players/<position>``` | ```players?q=(position:<position_abbr>)``` |
+
+**Responses**
+
+*200*:
+
+```json
+{
+	"players":[
+		{
+			"lastname": <player_lastname>,
+			"firstname": <player_firstname>,
+			"nickname": <player_nickname>,
+			"position": <position_abbr>,
+			"team": <team_name>,
+			"status": <player_status>
+		}
+	]
+}
+```
+
+**```player_status```**:
+
+ACTIVE, INACTIVE, PRACTICE, IR, PUP
