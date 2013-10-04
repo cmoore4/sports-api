@@ -25,7 +25,11 @@ ex: offset=50
 
 *suppress_error_codes* - can be set to true in order to always return a 200 HTTP response code instead of the proper HTTP response code.  Error messages will still be included in the response object.
 
-`[toc]`
+### Method List
+
+- [teams](#teams)
+- [players](#players)
+- [roster](#players)
 
 
 ### teams
