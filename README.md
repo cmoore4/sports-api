@@ -3,7 +3,7 @@
 
 This is the source code running the sports API.  Its everything needed to start running a local copy of the API.  Currently it supports only the NFL.  The first few days, it will simply be a sql file and reference documentation, no code.  Code will be written to fit the spec.
 
-## Methods
+## Shared Paramters
 
 Base url: http://api.example.com/v1/football/nfl/
 
@@ -39,8 +39,9 @@ Rate limiting will return the following response, and all other errors will foll
 		"code": "RATE:001"
 	}
 }
+```
 
-### Method List
+## Method List
 
 - [teams](#teams)
 - [players](#players)
@@ -96,9 +97,6 @@ Rate limiting will return the following response, and all other errors will foll
 **```con_standing```**: 1-16
 
 
-
-```
-
 ### players
 
 | Method | URL    | Alias |
@@ -114,6 +112,8 @@ Rate limiting will return the following response, and all other errors will foll
 | GET    | history   | false/true | Include [history](#history) object within each player object |
 
 By default, only active players, signed to a team and/or on the practive squad, are returned.
+
+The roster method is provided for convenience, and allows either team id or team name as the second url paramter.
 
 **Responses**
 
