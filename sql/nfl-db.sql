@@ -38,14 +38,18 @@ CREATE TABLE players (
 	id integer NOT NULL UNIQUE DEFAULT nextval('uniqueid'),
 	lastname varchar(80) NOT NULL,
 	firstname varchar(80) NOT NULL,
+	`number` interger DEFAULT NULL, 
 	nickname varchar(120) DEFAULT NULL,
 	position position_abbr NULL,
 	team_id integer DEFAULT NULL,
 	status player_status DEFAULT NULL,
-	depth varchar(20) DEFAULT null,
+	depth varchar(20) DEFAULT NULL,
 	starter boolean DEFAULT false,
-	draft_position integer DEFAULT 0,
-	college varchar(256) DEFAULT null,
+	draft_position integer DEFAULT NULL,
+	draft_year integer DEFAULT NULL,
+	games_played integer DEFAULT NULL,
+	college varchar(256) DEFAULT NULL,
+	retired integer DEFAULT NULL,
 	CONSTRAINT players_team_fk FOREIGN KEY (team_id)
 		REFERENCES teams(id) ON UPDATE CASCADE ON DELETE CASCADE
 );
